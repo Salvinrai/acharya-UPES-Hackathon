@@ -115,6 +115,9 @@ const authO = async (req,res,next) =>{
 }
 // ------------------server ------register paths ------------------------------
 app.get('/', (req,res)=>{
+  res.render('mainpage')
+});
+app.get('/loginN', (req,res)=>{
   res.render('loginN')
 });
 app.get('/loginO', (req,res)=>{
