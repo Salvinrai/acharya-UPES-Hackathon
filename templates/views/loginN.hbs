@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NGO LOGIN </title>
+  <title> LOGIN FORM</title>
   <link rel="stylesheet" href="css/styleSL.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
 </head>
@@ -13,11 +13,11 @@
   <div class="wrapper">
     <div class="option">
       <div id="btn"></div>
-      <button onclick="document.location='loginN'" type="button" class="toggle-btn" >NGO</button>
-      <button onclick="document.location='loginO'" type="button" class="toggle-btn">Others</button>
+      <button onclick="document.location='/loginN'" type="button" class="toggle-btn" >NGO</button>
+      <button onclick="document.location='/loginO'" type="button" class="toggle-btn">Other</button>
       </div>
-    <header> NGO Login</header>
-    <form action="/Nlogin" method="POST">
+    <header>Login Form></form></header>
+    <form action="/log" method="POST">
       <div class="field email">
         <div class="input-area">
           <input type="text" id ="pl-email" placeholder="Email Address" name="email">
@@ -37,12 +37,12 @@
       <div class="pass-txt"><a href="#">Forgot password?</a></div>
       <input type="submit" value="Login">
     </form>
-    <div class="sign-txt">Not yet member? <a href="registerN">register now</a></div>
+    <div class="sign-txt">Not yet member? <a href="/registerN">register now</a></div>
   </div>
 </div>
   
 
-  <script src="js/scriptSL.js"></script>
+  <script src=".js/scriptSL.js"></script>
 
 </body>
 </html>

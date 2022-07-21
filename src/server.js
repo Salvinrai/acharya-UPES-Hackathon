@@ -91,28 +91,30 @@ const auth = async (req,res,next) =>{
 
 }
 //middleware for authentication # serialization work for ORGANISATION
-const authO = async (req,res,next) =>{
-  try {
+// const authO = async (req,res,next) =>{
+//   try {
 
-      const token = req.cookies.jwt;
+//       const token = req.cookies.jwt;
 
-      const verifyUser = jwt.verify(token, process.env.SECRET_KEY);
+//       const verifyUser = jwt.verify(token, process.env.SECRET_KEY);
 
-      const curruser = await RegisterO.findOne({email:verifyUser._id});
+//       const curruser = await RegisterO.findOne({email:verifyUser._id});
 
-      req.token = token;
-      req.Ouser = curruser;
+//       req.token = token;
+//       req.Ouser = curruser;
       
-      next();
+//       next();
       
       
-  } catch (error) {
+//   } catch (error) {
     
-     res.render('loginO');
-  }
+//      res.render('loginO');
+//   }
 
 
-}
+//}
+
+
 // ------------------server ------register paths ------------------------------
 app.get('/', (req,res)=>{
   res.render('mainpage')
@@ -134,6 +136,7 @@ app.get('/registerO', (req,res)=>{
 app.get('/index',auth, (req,res)=>{
   res.render('index')
 });
+
 
 
 // ------------------server ------register paths **end**------------------------------
@@ -197,43 +200,43 @@ app.post('/registerO', async(req,res)=>{
 
   }
 })
-
 // checking NGO login--------------> from database ------------------
-app.post('/Nlogin', async(req,res)=>{
-   try{
-         const email =req.body.email;
-         const password =req.body.password;
-    const username = await Register.findOne({email:email});
+app.post('/log', async(req,res,next)=>{
+  try{
+        const email =req.body.email;
+        const password =req.body.password;
+   const username = await Register.findOne({email:email});
 
-    const isMatch = await bcrypt.compare(password, username.password);
-    
-    const token =await username.generateAuthToken();
-      console.log('the token part'+ token);
-    
-      res.cookie('jwt',token,{
-        expires:new Date(Date.now()+600000),
-        httpOnly:true,
-        //secure:true
-      });
-
-
-
-    if(isMatch){
-        res.status(202).render('index');
-       
-             
-   }
-    else{
-       res.send("invalid password details");
+   const isMatch = await bcrypt.compare(password, username.password);
    
-   }
-   }   
-   catch(error){
-     res.status(404).send("invalid login details");
-    }
-   });
+   const token =await username.generateAuthToken();
+     console.log('the token part'+ token);
+   
+     res.cookie('jwt',token,{
+       expires:new Date(Date.now()+600000),
+       httpOnly:true,
+       //secure:true
+     });
 
-// checking NGO login--------------> from database ------------------
+
+
+   if(isMatch){
+       res.status(202).render('index');
+     // next();
+            
+  }
+   else{
+      res.send("invalid password details");
+  
+  }
+  }   
+  catch(error){
+    res.status(404).send("invalid login details");
+   }
+  });
+
+
+// checking organisation  login--------------> from database ------------------
 app.post('/Ologin', async(req,res)=>{
   try{
         const email =req.body.email;
